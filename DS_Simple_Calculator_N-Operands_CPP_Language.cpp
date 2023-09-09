@@ -3,9 +3,92 @@
 
 using namespace std;
 
-struct Calculator {
-  char operator;
-  vector<double> operands;
+struct Node {
+  double operand;
+  Node* next;
+};
+
+class LinkedList {
+  Node* head;
+
+public:
+  LinkedList() {
+    head = nullptr;
+  }
+
+  void push(double operand) {
+    Node* node = new Node();
+    node->operand = operand;
+    node->next = head;
+    head = node;
+  }
+
+  double pop() {
+    double operand = head->operand;
+    Node* temp = head;
+    head = head->next;
+    delete temp;
+    return operand;
+  }
+};
+
+class Stack {
+  Node* top;
+
+public:
+  Stack() {
+    top = nullptr;
+  }
+
+  void push(char operator) {
+    Node* node = new Node();
+    node->operator = operator;
+    node->next = top;
+    top = node;
+  }
+
+  char pop() {
+    char operator = top->operator;
+    Node* temp = top;
+    top = top->next;
+    delete temp;
+    return operator;
+  }
+};
+
+class Queue {
+  Node* front;
+  Node* rear;
+
+public:
+  Queue() {
+    front = nullptr;
+    rear = nullptr;
+  }
+
+  void push(double result) {
+    Node* node = new Node();
+    node->result = result;
+    node->next = nullptr;
+    if (front == nullptr) {
+      front = node;
+      rear = node;
+    } else {
+      rear->next = node;
+      rear = node;
+    }
+  }
+
+  double pop() {
+    double result = front->result;
+    Node* temp = front;
+    front = front->next;
+    if (front == nullptr) {
+      rear = nullptr;
+    }
+    delete temp;
+    return result;
+  }
 };
 
 double add(double x, double y) {
@@ -25,41 +108,35 @@ double divide(double x, double y) {
 }
 
 int main() {
-  Calculator calculator;
+  LinkedList operands;
+  Stack operators;
+  Queue results;
 
   cout << "Enter an operator (+, -, *, /): ";
-  cin >> calculator.operator;
+  char operator;
+  cin >> operator;
 
-  cout << "Enter number of operands: ";
-  int n;
-  cin >> n;
+  while (operator != '=') {
+    operators.push(operator);
 
-  for (int i = 0; i < n; i++) {
+    cout << "Enter operand: ";
     double operand;
-    cout << "Enter operand " << i + 1 << ": ";
     cin >> operand;
-    calculator.operands.push_back(operand);
+    operands.push(operand);
+
+    cout << "Enter an operator (+, -, *, /): ";
+    cin >> operator;
   }
 
-  double result = calculator.operands[0];
-  for (int i = 1; i < n; i++) {
-    switch (calculator.operator) {
-    case '+':
-      result = add(result, calculator.operands[i]);
-      break;
-    case '-':
-      result = subtract(result, calculator.operands[i]);
-      break;
-    case '*':
-      result = multiply(result, calculator.operands[i]);
-      break;
-    case '/':
-      result = divide(result, calculator.operands[i]);
-      break;
-    }
+  while (!operators.empty()) {
+    char operator = operators.pop();
+    double operand2 = results.pop();
+    double operand1 = results.pop();
+    double result = performOperation(operator, operand1, operand2);
+    results.push(result);
   }
 
-  cout << "Result = " << result << endl;
+  cout << "Result = " << results.pop() << endl;
 
   return 0;
 }
