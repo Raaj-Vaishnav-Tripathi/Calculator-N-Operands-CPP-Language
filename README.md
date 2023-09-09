@@ -2,7 +2,7 @@
 This is completely C++ language based Project which can perform 4 major operations of basic Calculator which are:- Addition , Subtraction, Division &amp; Multiplication.
 The main difference is that it can take the number of operands input by the user &amp; it can then perform the selected operation on all operands provided till the nth
 operand. I just took the number of Operands input by user in integer variable "n" and then created a array named Operands of size "n". Then I used Switch cases for all
-four Arithematic operations :- +, -, *, /. I also used for loops inside all switch cases for iterating every operands in Operand array and used some conditional statements.
+four Arithmetic operations :- +, -, *, /. I also used for loops inside all switch cases for iterating every operand in Operand array and used some conditional statements.
 
 I have added one CPP file named as "DS_Simple_Calculator_N-Operands_CPP_Language.cpp" in which I have added better code in terms of Time and memory consumption by using Data Structures.
 
