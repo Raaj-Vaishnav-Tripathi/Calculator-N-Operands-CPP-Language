@@ -1,22 +1,34 @@
-# Calculator-N-Operands CPP Language
-This is completely C++ language based Project which can perform 4 major operations of basic Calculator which are:- Addition , Subtraction, Division &amp; Multiplication.
-The main difference is that it can take the number of operands input by the user &amp; it can then perform the selected operation on all operands provided till the nth
-operand. I just took the number of Operands input by user in integer variable "n" and then created a array named Operands of size "n". Then I used Switch cases for all
-four Arithmetic operations :- +, -, *, /. I also used for loops inside all switch cases for iterating every operand in Operand array and used some conditional statements.
+# Calculator-N-Operands (C++)
 
-Time Complexity:
+## Overview
+This project implements a simple yet customizable calculator using C++. It supports four basic arithmetic operations—addition, subtraction, multiplication, and division—while allowing users to input the number of operands for the selected operation.
 
-Input Reading: O(n)
-Initializing the vector: O(n)
-Performing the selected operation: O(n-1) (since loop through n-1 operands)
-Printing the result: O(1)
-The overall time complexity of the code is O(n).
+## Features
+- **Dynamic operand count**: The calculator can process multiple operands provided by the user, performing the chosen operation across all inputs.
+- **Basic arithmetic operations**: Includes addition (+), subtraction (-), multiplication (*), and division (/).
+- **Efficient code structure**: Uses switch cases and loops to handle different operations and iterate through operands.
 
-Space Complexity:
+## How It Works
+1. The user specifies the number of operands (`n`).
+2. The operands are then stored in a dynamically created array.
+3. Depending on the operation (+, -, *, /) chosen by the user, the program performs the corresponding arithmetic on all operands.
 
-Vector for operands: O(n)
-Additional variables: O(1)
-The overall space complexity of the code is O(n).
+## Time and Space Complexity
+- **Time Complexity**:  
+  - Input Reading: O(n)  
+  - Initialization: O(n)  
+  - Operation Execution: O(n-1)  
+  - Overall: O(n)
 
+- **Space Complexity**:  
+  - Operand storage: O(n)  
+  - Additional variables: O(1)  
+  - Overall: O(n)
 
-I have one Respository with same project implemented completely in C Language.
+## Example Usage
+```cpp
+Enter an operator (+, -, *, /): +
+Enter Number of Operands: 3
+Enter 3 operands below:
+5 3 2
+5 + 3 + 2 = 10
